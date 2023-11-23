@@ -1,0 +1,42 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    command: ["python", "weather_project/manage.py", "runserver", "0.0.0.0:8000"]
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - redis
+      - bot
+    environment:
+      - YaWeatherKey=${YaWeatherKey}
+
+  redis:
+    image: "redis:alpine"
+    hostname: redis
+    
+  ngrok:
+    image: "wernight/ngrok"
+    ports:
+      - "4040:4040"
+    environment:
+      - NGROK_AUTHTOKEN=${NGROK_AUTHTOKEN}
+    command:
+      - /bin/sh
+      - -c
+      - |
+        ngrok authtoken ${NGROK_AUTHTOKEN}
+        ngrok http 7772
+
+  bot:
+    build: .
+    command: ["python", "main.py"]
+    depends_on:
+      - ngrok
+    ports:
+      - "7772:7772"
+    environment:
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}

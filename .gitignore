@@ -1,0 +1,4 @@
+*/*/__pycache__/*
+*/__pycache__/*
+example_req.json
+weather_project/db.sqlite3

@@ -1,0 +1,5 @@
+Django==4.2.7
+geopy==2.4.0
+Requests==2.31.0
+django-redis==5.4.0
+aiogram==2.21
