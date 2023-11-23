@@ -1,0 +1,23 @@
+# tst
+
+Тестовый проект
+
+## Начало работы
+
+После клонирования нужно в той же директории что и docker-compose.yml выполнить. https://t.me/telegrFromHomeBot бот который обрабатывает сообщения.
+```docker-compose up --build```
+
+### Предварительные условия
+
+.env
+Для работы необходимы ваши токены.
+YaWeatherKey - ключ для получения погоды от яндекса по координатам
+TELEGRAM_BOT_TOKEN - токен вашего телграмм бота
+NGROK_AUTHTOKEN - authtoken для ngrok
+
+ngrok.yml
+authtoken - authtoken для ngrok
+
+## Встроенные инструменты
+
+* http://127.0.0.1:8000/weather?<city_name> - Endpoint для получения температуры, давления и скорости ветра по <city_name> на русском языке.
